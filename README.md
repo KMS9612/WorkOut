@@ -1,38 +1,16 @@
 <p align="center"><img src="https://i.imgur.com/flcMvDC.png"></p>
 
-## Usage
+## Work Out! 프로젝트!
 
-### Create an App
+현대사회에서 운동을 한다고 하면 헬스를 떠올릴 만큼 웨이트트레이닝은 대부분의 사람들이 알고있다.
+하지만 프로그램을 짜서 전략적으로 점진적과부하를 시행하는 사람은 초보자라면 쉽지않고 정보또한 부족하기 마련이다.
+Work Out은 슬슬 웨이트트레이닝이 진심! 이 되어가는 헬스인을 위해 프로그램을 추천,설정하고 자신의 중량과 갯수를 똑똑하고 안전하게 올릴 수 있도록 도와주는 Todo, Record 웹 어플리케이션이다.
+
+---
+
+## How To Develop?
 
 ```
 # with npx
 $ npx create-nextron-app my-app --example with-material-ui
-
-# with yarn
-$ yarn create nextron-app my-app --example with-material-ui
-
-# with pnpx
-$ pnpx create-nextron-app my-app --example with-material-ui
-```
-
-### Install Dependencies
-
-```
-$ cd my-app
-
-# using yarn or npm
-$ yarn (or `npm install`)
-
-# using pnpm
-$ pnpm install --shamefully-hoist
-```
-
-### Use it
-
-```
-# development mode
-$ yarn dev (or `npm run dev` or `pnpm run dev`)
-
-# production build
-$ yarn build (or `npm run build` or `pnpm run build`)
 ```
