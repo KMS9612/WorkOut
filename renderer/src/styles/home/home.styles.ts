@@ -4,7 +4,6 @@ import { Button, Typography } from "@mui/material";
 export const Wrapper = styled.div`
   width: 90vw;
   height: 90vh;
-  border: 1px solid #bdbdbd;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -12,7 +11,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Header = styled(Typography)`
-  color: #ff75ac;
+  color: #ff8375;
   font-weight: 700;
 `;
 

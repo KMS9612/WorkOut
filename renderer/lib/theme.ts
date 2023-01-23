@@ -5,10 +5,10 @@ import { red } from "@mui/material/colors";
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#ff75ac",
+      main: "#FF8375",
     },
     secondary: {
-      main: "#19857b",
+      main: "#ff75ac",
     },
     error: {
       main: red.A400,
@@ -19,6 +19,11 @@ const theme = createTheme({
       defaultProps: {
         variant: "outlined",
         size: "large",
+      },
+    },
+    MuiTextField: {
+      defaultProps: {
+        margin: "normal",
       },
     },
   },

@@ -15,6 +15,8 @@ type MyAppProps = AppProps & {
 };
 
 const Wrapper = styled.div`
+  width: 95vw;
+  height: 95vh;
   display: flex;
   justify-content: center;
   align-items: center;
