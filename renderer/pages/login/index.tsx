@@ -1,17 +1,10 @@
-import styled from "@emotion/styled";
 import Head from "next/head";
-import theme from "../../lib/theme";
-import * as LS from "../../src/styles/login/login.styles";
 
-const Root = styled("div")(({ theme }) => {
-  return {
-    textAlign: "center",
-  };
-});
+import * as LS from "../../src/styles/login/login.styles";
 
 export default function LoginPage() {
   return (
-    <Root>
+    <div>
       <Head>
         <title>Login - WorkOut</title>
       </Head>
@@ -26,6 +19,6 @@ export default function LoginPage() {
           <LS.SignInBtn>회원가입</LS.SignInBtn>
         </LS.BtnWrapper>
       </LS.Wrapper>
-    </Root>
+    </div>
   );
 }
