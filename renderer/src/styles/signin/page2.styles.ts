@@ -1,8 +1,6 @@
 import styled from "@emotion/styled";
 import { Box, Button, TextField } from "@mui/material";
 
-// @media screen and (max-width: 550px)
-
 export const Wrapper = styled.form`
   height: 35vh;
   display: flex;
@@ -12,10 +10,6 @@ export const Wrapper = styled.form`
   border: 1px solid #ff8375;
   border-radius: 5px;
   padding-top: 15px;
-  @media screen and (max-width: 550px) {
-    width: 100%;
-    height: 40vh;
-  }
 `;
 
 export const InputWrapper = styled(Box)`
@@ -24,10 +18,8 @@ export const InputWrapper = styled(Box)`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  @media screen and (max-width: 550px) {
-    width: 100%;
-  }
 `;
+
 export const Input = styled(TextField)`
   width: 90%;
 `;
@@ -41,17 +33,6 @@ export const Btn = styled(Button)`
   margin: 0px 5px 5px 0px;
 `;
 
-export const PasswordBox = styled.div`
-  width: 100%;
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-`;
-export const VisibilityBtn = styled.div`
-  position: absolute;
-  right: 47px;
-  bottom: 25%;
-  cursor: pointer;
+export const SubmitBtn = styled(Button)`
+  margin: 0px 5px 5px 0px;
 `;

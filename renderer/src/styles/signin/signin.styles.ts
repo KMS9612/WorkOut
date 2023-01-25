@@ -15,8 +15,14 @@ export const Header = styled(Typography)`
   text-align: left;
   font-weight: 700;
   color: #ff8375;
+  @media screen and (max-width: 550px) {
+    width: 100%;
+  }
 `;
 
 export const FormWrapper = styled.div`
   width: 50%;
+  @media screen and (max-width: 550px) {
+    width: 100%;
+  }
 `;
