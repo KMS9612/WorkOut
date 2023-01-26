@@ -1,7 +1,6 @@
 import { IPropsSignInPage1 } from "../../types/signin/page1.types";
 import * as P1S from "../../styles/signin/page1.styles";
-import { MouseEvent, useState } from "react";
-import { FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput } from "@mui/material";
+import { useState } from "react";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 

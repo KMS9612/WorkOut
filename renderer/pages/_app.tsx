@@ -7,7 +7,6 @@ import type { EmotionCache } from "@emotion/cache";
 import createEmotionCache from "../lib/create-emotion-cache";
 import { CacheProvider } from "@emotion/react";
 import styled from "@emotion/styled";
-
 const clientSideEmotionCache = createEmotionCache();
 
 type MyAppProps = AppProps & {
@@ -31,6 +30,7 @@ export default function MyApp(props: MyAppProps) {
     <CacheProvider value={emotionCache}>
       <Head>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+        <title>WorkOut!</title>
       </Head>
       <Wrapper>
         <ThemeProvider theme={theme}>

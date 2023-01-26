@@ -12,6 +12,9 @@ export const Wrapper = styled.div`
   align-items: center;
   border: 1px solid #ff8375;
   border-radius: 5px;
+  @media screen and (max-width: 550px) {
+    width: 100vw;
+  }
 `;
 
 export const Header = styled(Typography)`
@@ -20,11 +23,17 @@ export const Header = styled(Typography)`
 `;
 
 export const InputWrapper = styled(Box)`
+  width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 export const Input = styled(TextField)`
   width: 300px;
+  @media screen and (max-width: 320px) {
+    width: 95%;
+  }
 `;
 
 export const BtnWrapper = styled(Stack)``;

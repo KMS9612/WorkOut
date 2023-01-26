@@ -17,9 +17,6 @@ export default function SignInPage() {
 
   return (
     <SS.Wrapper>
-      <Head>
-        <title>Signin - WorkOut</title>
-      </Head>
       <SS.Header variant="h3">SignIn</SS.Header>
       <SS.FormWrapper>
         <PageStatus isPage1={isPage1}></PageStatus>

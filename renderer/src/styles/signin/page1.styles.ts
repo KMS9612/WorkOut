@@ -4,7 +4,7 @@ import { Box, Button, TextField } from "@mui/material";
 // @media screen and (max-width: 550px)
 
 export const Wrapper = styled.form`
-  height: 35vh;
+  height: 350px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -14,7 +14,7 @@ export const Wrapper = styled.form`
   padding-top: 15px;
   @media screen and (max-width: 550px) {
     width: 100%;
-    height: 40vh;
+    height: 350px;
   }
 `;
 
@@ -51,7 +51,7 @@ export const PasswordBox = styled.div`
 `;
 export const VisibilityBtn = styled.div`
   position: absolute;
-  right: 47px;
+  right: 7%;
   bottom: 25%;
   cursor: pointer;
 `;
