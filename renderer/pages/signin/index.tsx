@@ -1,5 +1,3 @@
-import styled from "@emotion/styled";
-import Head from "next/head";
 import { useState } from "react";
 import SignInPage1 from "../../src/components/signin/page1";
 import SignInPage2 from "../../src/components/signin/page2";
