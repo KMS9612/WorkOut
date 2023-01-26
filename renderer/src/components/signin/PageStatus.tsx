@@ -1,26 +1,14 @@
-import CheckIcon from "@mui/icons-material/Check";
-import { styled } from "@mui/material/styles";
-import theme from "../../../lib/theme";
-
+import * as PSS from "../../styles/signin/PageStatus.styles";
 interface IPropsPageStatus {
   isPage1: boolean;
 }
 
-const Check = styled(CheckIcon)`
-  font-size: 15px;
-  color: #ff8375;
-`;
-const Root = styled("div")(({ theme }) => {
-  return {
-    textAlign: "center",
-  };
-});
 export default function PageStatus(props: IPropsPageStatus) {
   return (
-    <Root>
-      <div>
-        <div>{props.isPage1 ? "1" : <Check />} - 2</div>
-      </div>
-    </Root>
+    <PSS.Wrapper>
+      {props.isPage1 ? <PSS.Number>1</PSS.Number> : <PSS.Check />}
+      <PSS.Bar style={props.isPage1 ? { borderTop: "2px solid #bdbddb" } : { borderTop: "2px solid #ff8375" }}></PSS.Bar>
+      <PSS.Number>2</PSS.Number>
+    </PSS.Wrapper>
   );
 }
