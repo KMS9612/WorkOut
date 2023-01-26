@@ -16,7 +16,7 @@ export default function SignInPage1(props: IPropsSignInPage1) {
   };
   return (
     <P1S.Wrapper>
-      <P1S.InputWrapper component="form">
+      <P1S.InputWrapper>
         <P1S.Input label="이메일" type="email"></P1S.Input>
         <P1S.PasswordBox>
           <P1S.Input label="암호" type={isShow ? "text" : "password"}></P1S.Input>
