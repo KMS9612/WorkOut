@@ -18,7 +18,11 @@ export default function LoginPage() {
           <LS.Input type="password" label="비밀번호" />
         </LS.InputWrapper>
         <LS.BtnWrapper spacing={1}>
-          <LS.LoginBtn name="/login" onClick={onClickRouting} variant="contained">
+          <LS.LoginBtn
+            name="/myPage"
+            onClick={onClickRouting}
+            variant="contained"
+          >
             로그인
           </LS.LoginBtn>
           <LS.SignInBtn name="/signin" onClick={onClickRouting}>
