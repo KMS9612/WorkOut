@@ -11,7 +11,7 @@ export const Header = styled(Typography)`
   justify-content: center;
   align-items: center;
   height: 100px;
-  border: 1px solid #ccc;
+  color: #ff8357;
 `;
 
 export const TopBox = styled.div`
@@ -20,12 +20,6 @@ export const TopBox = styled.div`
   justify-content: space-around;
   align-items: center;
   padding: 50px;
-`;
-
-export const UserInfo = styled.div`
-  border: 1px solid #bdbdbd;
-  width: 40%;
-  height: 20rem;
 `;
 
 export const ProgramBox = styled.div`
