@@ -34,16 +34,14 @@ export default function MyApp(props: MyAppProps) {
   return (
     <CacheProvider value={emotionCache}>
       <Head>
-        <meta
-          name="viewport"
-          content="minimum-scale=1, initial-scale=1, width=device-width"
-        />
+        <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
         <title>WorkOut!</title>
       </Head>
       <ThemeProvider theme={theme}>
         <Button
           variant="outlined"
           size="small"
+          style={{ position: "fixed" }}
           onClick={() => {
             router.back();
           }}
