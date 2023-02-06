@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 
 const icons = [
   { routing: "ai", title: "AI와 대화", Icon: ForumIcon },
-  { routing: "routine", title: "나의 운동루틴", Icon: FitnessCenterIcon },
+  { routing: "MyRoutine", title: "나의 운동루틴", Icon: FitnessCenterIcon },
   { routing: "createRoutine", title: "새로운 운동루틴 만들기", Icon: PlaylistAddIcon },
 ];
 
