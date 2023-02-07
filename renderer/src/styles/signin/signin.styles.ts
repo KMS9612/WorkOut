@@ -15,6 +15,7 @@ export const Header = styled(Typography)`
   text-align: left;
   font-weight: 700;
   color: #ff8375;
+  font-family: "Jua", "sans-serif";
   @media screen and (max-width: 550px) {
     width: 100%;
   }

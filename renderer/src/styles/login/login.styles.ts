@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
-import theme from "../../../lib/theme";
 
-import { Box, Button, ButtonBase, ButtonProps, Stack, TextField, Typography } from "@mui/material";
+import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 
 export const Wrapper = styled.div`
   width: 500px;
@@ -18,6 +17,8 @@ export const Wrapper = styled.div`
 `;
 
 export const Header = styled(Typography)`
+  font-family: "Jua", "sans-serif";
+
   color: #ff8375;
   font-weight: 700;
 `;

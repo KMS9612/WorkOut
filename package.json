@@ -16,10 +16,14 @@
   },
   "dependencies": {
     "@fontsource/roboto": "^4.5.8",
+    "@hookform/resolvers": "^2.9.10",
     "@mui/icons-material": "^5.11.0",
     "electron-serve": "^1.1.0",
     "electron-store": "^8.1.0",
-    "next-seo": "^5.15.0"
+    "firebase": "^9.17.1",
+    "next-seo": "^5.15.0",
+    "react-hook-form": "^7.43.1",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@emotion/cache": "^11.10.3",

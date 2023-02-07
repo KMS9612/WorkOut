@@ -11,6 +11,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Header = styled(Typography)`
+  font-family: "Jua", "sasn-serif";
   color: #ff8375;
   font-weight: 700;
 `;

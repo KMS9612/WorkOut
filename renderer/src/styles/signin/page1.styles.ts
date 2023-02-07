@@ -1,10 +1,7 @@
 import styled from "@emotion/styled";
 import { Box, Button, TextField } from "@mui/material";
 
-// @media screen and (max-width: 550px)
-
 export const Wrapper = styled.form`
-  height: 350px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -30,6 +27,7 @@ export const InputWrapper = styled(Box)`
 `;
 export const Input = styled(TextField)`
   width: 90%;
+  max-height: 65px;
 `;
 
 export const BtnWrapper = styled.div`
@@ -50,8 +48,5 @@ export const PasswordBox = styled.div`
   align-items: center;
 `;
 export const VisibilityBtn = styled.div`
-  position: absolute;
-  right: 7%;
-  bottom: 25%;
   cursor: pointer;
 `;
