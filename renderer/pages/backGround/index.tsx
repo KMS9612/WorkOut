@@ -17,15 +17,21 @@ export default function BackGround() {
   const onClickMoveToPage = (event: MouseEvent<HTMLDivElement>) => {
     router.push(event.currentTarget.id);
   };
+  const UserInfo = JSON.parse(sessionStorage.getItem("UserInfo") || "");
+
+  console.log(UserInfo);
   return (
     <BS.Wrapper>
-      {icons.map(({ routing, title, Icon }) => (
-        <Tooltip title={title} key={routing}>
-          <BS.IconBox id={routing} onClick={onClickMoveToPage} elevation={4}>
-            <Icon />
-          </BS.IconBox>
-        </Tooltip>
-      ))}
+      <BS.Header variant="h4">{`${UserInfo.displayName}님 오늘도 WorkOut!`}</BS.Header>
+      <BS.IconWrapper>
+        {icons.map(({ routing, title, Icon }) => (
+          <Tooltip title={title} key={routing}>
+            <BS.IconBox id={routing} onClick={onClickMoveToPage} elevation={4}>
+              <Icon />
+            </BS.IconBox>
+          </Tooltip>
+        ))}
+      </BS.IconWrapper>
     </BS.Wrapper>
   );
 }

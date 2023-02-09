@@ -9,6 +9,7 @@ import { CacheProvider } from "@emotion/react";
 import styled from "@emotion/styled";
 import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 import { useRouter } from "next/router";
+import { RecoilRoot } from "recoil";
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -50,7 +51,9 @@ export default function MyApp(props: MyAppProps) {
         </Button>
         <Wrapper>
           <CssBaseline />
-          <Component {...pageProps} />
+          <RecoilRoot>
+            <Component {...pageProps} />
+          </RecoilRoot>
         </Wrapper>
       </ThemeProvider>
     </CacheProvider>

@@ -23,6 +23,7 @@
     "firebase": "^9.17.1",
     "next-seo": "^5.15.0",
     "react-hook-form": "^7.43.1",
+    "recoil": "^0.7.6",
     "yup": "^0.32.11"
   },
   "devDependencies": {

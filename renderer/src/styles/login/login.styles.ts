@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.form`
   width: 500px;
   height: 400px;
   display: flex;
@@ -46,4 +46,10 @@ export const LoginBtn = styled(Button)`
 
 export const SignInBtn = styled(Button)`
   width: 300px;
+`;
+
+export const Err = styled.div`
+  color: red;
+  font-size: 16px;
+  font-family: "Jua", "sans-serif";
 `;
