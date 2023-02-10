@@ -17,6 +17,7 @@ export default function RoutineTable() {
   return (
     <TS.Wrapper component={Paper}>
       <TS.Header variant="h4">루틴정보</TS.Header>
+
       <TS.InputWrapper>
         <TS.Input label="종목" />
         <TS.Input

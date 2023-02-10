@@ -46,9 +46,7 @@ export default function SignInPage() {
   });
 
   const onSubmitSigninForm = handleSubmit(async (data) => {
-    await createUser(data.email, data.password, data.name);
-    router.push("/login");
-    console.log("가입");
+    await createUser(data.email, data.password, data.name, data.height, data.weight);
   });
   return (
     <SS.Wrapper>

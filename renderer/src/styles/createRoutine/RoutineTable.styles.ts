@@ -19,7 +19,7 @@ export const Header = styled(Typography)`
   font-family: "Jua";
 `;
 export const InputWrapper = styled.div`
-  width: 92%;
+  width: 95%;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
