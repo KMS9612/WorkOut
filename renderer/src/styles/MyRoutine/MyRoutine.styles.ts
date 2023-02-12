@@ -14,7 +14,10 @@ export const Top = styled.div`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  margin-bottom: 20px;
+  margin: 50px 0px;
+  @media screen and (max-width: 700px) {
+    flex-direction: column;
+  }
 `;
 
 export const Bottom = styled.div`

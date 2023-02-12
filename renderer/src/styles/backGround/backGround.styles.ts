@@ -8,11 +8,20 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  @media screen and (max-width: 700px) {
+    width: 100%;
+  }
 `;
 
 export const Header = styled(Typography)`
   font-family: "Jua", "sans-serif";
   color: #ff8375;
+  @media screen and (max-width: 700px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+  }
 `;
 export const IconWrapper = styled.div`
   width: 50%;
@@ -20,6 +29,10 @@ export const IconWrapper = styled.div`
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
+  @media screen and (max-width: 700px) {
+    width: 100%;
+    flex-direction: column;
+  }
 `;
 export const IconBox = styled(Paper)`
   width: 50px;
@@ -34,5 +47,9 @@ export const IconBox = styled(Paper)`
   &:hover {
     transform: scale(1.2, 1.2);
     transition: 1000ms;
+  }
+  @media screen and (max-width: 700px) {
+    width: 80%;
+    margin-bottom: 5px;
   }
 `;

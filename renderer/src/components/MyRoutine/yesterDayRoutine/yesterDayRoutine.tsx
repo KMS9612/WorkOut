@@ -18,7 +18,11 @@ export default function YesterDayRoutine() {
       <YD.Top>
         <YD.Header variant="h4">어제의 루틴</YD.Header>
       </YD.Top>
-      <TableContainer component={Paper} elevation={4} style={{ textAlign: "right", maxWidth: "90%" }}>
+      <TableContainer
+        component={Paper}
+        elevation={4}
+        style={{ textAlign: "right", maxWidth: "90%" }}
+      >
         <Table aria-label="simple table">
           <TableHead>
             <TableRow>
@@ -29,7 +33,10 @@ export default function YesterDayRoutine() {
           </TableHead>
           <TableBody>
             {rows.map((row) => (
-              <TableRow key={row.name} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+              <TableRow
+                key={row.name}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
                 <TableCell component="th" scope="row">
                   {row.name}
                 </TableCell>

@@ -3,22 +3,24 @@ import styled from "@emotion/styled";
 import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 
 export const Wrapper = styled.form`
-  width: 500px;
-  height: 400px;
+  width: 90vw;
+  height: 90vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
-  border: 1px solid #ff8375;
+
   border-radius: 5px;
   @media screen and (max-width: 550px) {
-    width: 100vw;
+    width: 90vw;
+    height: 90vh;
+    justify-content: center;
+    align-items: center;
   }
 `;
 
 export const Header = styled(Typography)`
   font-family: "Jua", "sans-serif";
-
   color: #ff8375;
   font-weight: 700;
 `;

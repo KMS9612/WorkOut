@@ -5,12 +5,14 @@ import { TextField } from "@mui/material";
 
 export const Wrapper = styled(Box)`
   width: 45%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 20px 0px;
+  @media screen and (max-width: 700px) {
+    width: 90%;
+  }
 `;
 
 export const Header = styled(Typography)`
@@ -24,8 +26,14 @@ export const InputWrapper = styled.div`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+  @media screen and (max-width: 700px) {
+    flex-direction: column;
+  }
 `;
 
 export const Input = styled(TextField)`
   width: 27%;
+  @media screen and (max-width: 700px) {
+    width: 90%;
+  }
 `;

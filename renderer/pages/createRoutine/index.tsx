@@ -5,10 +5,8 @@ import RoutineTable from "../../src/components/createRoutine/RoutineTable/Routin
 export default function CreateRoutine() {
   return (
     <CS.Wrapper>
-      <CS.Top>
-        <RoutineList />
-        <RoutineTable />
-      </CS.Top>
+      <RoutineList />
+      <RoutineTable />
     </CS.Wrapper>
   );
 }

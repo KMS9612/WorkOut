@@ -12,9 +12,11 @@ export const FormBox = styled.form`
 `;
 export const Wrapper = styled(Box)`
   width: 45%;
-  height: 100%;
-
   padding: 20px 0px;
+  margin-bottom: 20px;
+  @media screen and (max-width: 700px) {
+    width: 90%;
+  }
 `;
 
 export const Header = styled(Typography)`
@@ -53,9 +55,9 @@ export const InputWrapper = styled.div`
   align-items: center;
 `;
 export const Input = styled(TextField)`
-  width: 80%;
+  width: 70%;
+  @media screen and (max-width: 700px) {
+    width: 70%;
+  }
 `;
-export const SubmitBtn = styled(Button)`
-  width: 15%;
-  height: 30px;
-`;
+export const SubmitBtn = styled(Button)``;

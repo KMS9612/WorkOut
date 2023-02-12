@@ -10,6 +10,9 @@ export const Wrapper = styled(Box)`
   justify-content: center;
   align-items: center;
   padding: 20px 0px;
+  @media screen and (max-width: 700px) {
+    width: 100%;
+  }
 `;
 
 export const Header = styled(Typography)`
