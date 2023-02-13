@@ -10,6 +10,7 @@ export const Wrapper = styled.div`
   align-items: center;
   @media screen and (max-width: 700px) {
     width: 100%;
+    overflow: scroll;
   }
 `;
 

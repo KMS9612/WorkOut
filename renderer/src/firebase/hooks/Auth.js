@@ -1,10 +1,9 @@
-import { app, dialog } from "electron";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useRouter } from "next/router";
 import { auth, db } from "../firebase.config";
 import { useRecoilState } from "recoil";
 import { LoginError } from "../../recoilState/Auth/loginState";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 export const useAuth = () => {
   const router = useRouter();
 
@@ -23,6 +22,7 @@ export const useAuth = () => {
           displayName: name,
           height: height ? height : "",
           weight: weight ? weight : "",
+          routine: [],
         });
       })
       .catch((error) => {
@@ -34,10 +34,14 @@ export const useAuth = () => {
   const [err, setErr] = useRecoilState(LoginError);
   const Login = async (email, password) => {
     await signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
+      .then(async (userCredential) => {
         const user = userCredential.user;
         sessionStorage.setItem("Token", user.refreshToken);
         sessionStorage.setItem("UserInfo", JSON.stringify(user));
+        // Routine정보 가져오기
+        const docRef = doc(db, "Users", user.uid);
+        const docSnap = await getDoc(docRef);
+        sessionStorage.setItem("routine", JSON.stringify(docSnap.data().routine));
 
         setErr(false);
         router.push("/backGround");

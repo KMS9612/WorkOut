@@ -19,7 +19,6 @@ type MyAppProps = AppProps & {
 
 const Wrapper = styled.div`
   width: 100vw;
-  height: 90vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -32,10 +31,7 @@ export default function MyApp(props: MyAppProps) {
   return (
     <CacheProvider value={emotionCache}>
       <Head>
-        <meta
-          name="viewport"
-          content="minimum-scale=1.0, initial-scale=1.0, width=device-width"
-        />
+        <meta name="viewport" content="minimum-scale=1.0, initial-scale=1.0, width=device-width" />
         <title>WorkOut!</title>
       </Head>
       <ThemeProvider theme={theme}>
