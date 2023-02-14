@@ -26,7 +26,7 @@ export const useAuth = () => {
         // 가입한 유저의 루틴 db생성
         const UserRef = doc(db, "Routines", user.uid);
         await setDoc(UserRef, {
-          routine: [],
+          routine: [{ title: "", list: [{ exercise: "", weight: "", reps: "" }] }],
         });
         router.push("/login");
       })
