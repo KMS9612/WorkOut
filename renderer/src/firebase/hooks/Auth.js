@@ -22,6 +22,10 @@ export const useAuth = () => {
           displayName: name,
           height: height ? height : "",
           weight: weight ? weight : "",
+        });
+        // 가입한 유저의 루틴 db생성
+        const UserRef = doc(db, "Routines", userUid);
+        await setDoc(UserRef, {
           routine: [],
         });
       })
@@ -39,7 +43,7 @@ export const useAuth = () => {
         sessionStorage.setItem("Token", user.refreshToken);
         sessionStorage.setItem("UserInfo", JSON.stringify(user));
         // Routine정보 가져오기
-        const docRef = doc(db, "Users", user.uid);
+        const docRef = doc(db, "Routines", user.uid);
         const docSnap = await getDoc(docRef);
         sessionStorage.setItem("routine", JSON.stringify(docSnap.data().routine));
 

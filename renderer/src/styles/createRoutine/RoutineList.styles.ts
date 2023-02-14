@@ -44,7 +44,15 @@ export const ListWrapper = styled(Stack)`
 export const ListItem = styled(Paper)`
   width: 95%;
   height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
   cursor: pointer;
+  &:hover {
+    transform: scale(1.1, 1.1);
+    transition: 1000ms;
+  }
 `;
 
 export const InputWrapper = styled.div`

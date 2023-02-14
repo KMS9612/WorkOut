@@ -7,32 +7,61 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import InputAdornment from "@mui/material/InputAdornment";
+import { ClickedRoutine } from "../../../recoilState/Routine/createRoutine";
+import { useRecoilState } from "recoil";
+import { useEffect, useState } from "react";
+import { Button } from "@mui/material";
+import { useForm } from "react-hook-form";
+import useRoutine from "../../../firebase/hooks/Routine";
 
 export default function RoutineTable() {
-  function createData(name: string, weight: number, Reps: number) {
-    return { name, weight, Reps };
-  }
+  const [clickedRoutine, setClickedRoutine] = useRecoilState(ClickedRoutine);
+  const [isSsr, setIsSsr] = useState(false);
+  const [tableItem, setTableItem] = useState<any>();
 
-  const rows = [createData("데드리프트", 110, 10)];
-  return (
+  const { updateNewExercise } = useRoutine();
+  const { register, handleSubmit } = useForm();
+
+  useEffect(() => {
+    const routine = JSON.parse(sessionStorage.getItem("routine") || "");
+    if (routine[clickedRoutine]) {
+      setTableItem(routine);
+    }
+    setIsSsr(true);
+  }, [clickedRoutine]);
+
+  // 클릭된 루틴에 새로운 운동을 추가
+  const onSubmitNewExercise = handleSubmit(async (data) => {
+    await updateNewExercise(clickedRoutine, data.exercise, data.weight, data.reps);
+    const routine = JSON.parse(sessionStorage.getItem("routine") || "");
+    setTableItem(routine);
+    setIsSsr(true);
+  });
+  return isSsr ? (
     <TS.Wrapper component={Paper}>
-      <TS.Header variant="h4">루틴정보</TS.Header>
+      <TS.FormWrapper onSubmit={onSubmitNewExercise}>
+        <TS.Header variant="h4">{tableItem[clickedRoutine].title}의 운동정보</TS.Header>
 
-      <TS.InputWrapper>
-        <TS.Input label="종목" />
-        <TS.Input
-          label="중량"
-          InputProps={{
-            endAdornment: <InputAdornment position="start">kg</InputAdornment>,
-          }}
-        />
-        <TS.Input
-          label="횟수"
-          InputProps={{
-            endAdornment: <InputAdornment position="start">회</InputAdornment>,
-          }}
-        />
-      </TS.InputWrapper>
+        <TS.InputWrapper onSubmit={onSubmitNewExercise}>
+          <TS.Input label="종목" {...register("exercise")} />
+          <TS.Input
+            label="중량"
+            {...register("weight")}
+            InputProps={{
+              endAdornment: <InputAdornment position="start">kg</InputAdornment>,
+            }}
+          />
+          <TS.Input
+            label="횟수"
+            {...register("reps")}
+            InputProps={{
+              endAdornment: <InputAdornment position="start">회</InputAdornment>,
+            }}
+          />
+        </TS.InputWrapper>
+        <TS.SubmitNewExercise type="submit">추가하기</TS.SubmitNewExercise>
+      </TS.FormWrapper>
+
       <TableContainer component={Paper} elevation={4} style={{ textAlign: "right", maxWidth: "90%" }}>
         <Table aria-label="simple table">
           <TableHead>
@@ -43,18 +72,28 @@ export default function RoutineTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
-              <TableRow key={row.name} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-                <TableCell component="th" scope="row">
-                  {row.name}
-                </TableCell>
-                <TableCell align="center">{row.weight}</TableCell>
-                <TableCell align="center">{row.Reps}</TableCell>
+            {tableItem ? (
+              tableItem[clickedRoutine].list.map((row: any) => (
+                <TableRow key={row.exercise} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+                  <TableCell component="th" scope="row">
+                    {row.exercise}
+                  </TableCell>
+                  <TableCell align="center">{row.weight}</TableCell>
+                  <TableCell align="center">{row.reps}</TableCell>
+                </TableRow>
+              ))
+            ) : (
+              <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+                <TableCell component="th" scope="row"></TableCell>
+                <TableCell align="center"></TableCell>
+                <TableCell align="center"></TableCell>
               </TableRow>
-            ))}
+            )}
           </TableBody>
         </Table>
       </TableContainer>
     </TS.Wrapper>
+  ) : (
+    <div>Loading...</div>
   );
 }

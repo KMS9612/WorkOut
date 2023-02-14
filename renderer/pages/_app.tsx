@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import type { AppProps } from "next/app";
-import { Button, CssBaseline, ThemeProvider } from "@mui/material";
+import { Box, Button, ButtonBase, CssBaseline, ThemeProvider } from "@mui/material";
 import theme from "../lib/theme";
 import type { EmotionCache } from "@emotion/cache";
 import createEmotionCache from "../lib/create-emotion-cache";
@@ -10,6 +10,7 @@ import styled from "@emotion/styled";
 import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 import { useRouter } from "next/router";
 import { RecoilRoot } from "recoil";
+import { app } from "electron";
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -22,6 +23,11 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+const BtnWrapper = styled(Box)`
+  width: 100px;
+  height: 100px;
 `;
 export default function MyApp(props: MyAppProps) {
   const { Component, pageProps, emotionCache = clientSideEmotionCache } = props;
@@ -45,6 +51,7 @@ export default function MyApp(props: MyAppProps) {
         >
           <ArrowLeftIcon />
         </Button>
+
         <Wrapper>
           <CssBaseline />
           <RecoilRoot>

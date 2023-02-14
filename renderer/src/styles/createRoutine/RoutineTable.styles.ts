@@ -1,6 +1,6 @@
 import { Box } from "@mui/system";
 import styled from "@emotion/styled";
-import { Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { TextField } from "@mui/material";
 
 export const Wrapper = styled(Box)`
@@ -12,6 +12,17 @@ export const Wrapper = styled(Box)`
   padding: 20px 0px;
   @media screen and (max-width: 700px) {
     width: 90%;
+  }
+`;
+export const FormWrapper = styled.form`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0px;
+  @media screen and (max-width: 700px) {
+    width: 100%;
   }
 `;
 
@@ -36,4 +47,8 @@ export const Input = styled(TextField)`
   @media screen and (max-width: 700px) {
     width: 90%;
   }
+`;
+
+export const SubmitNewExercise = styled(Button)`
+  width: 90%;
 `;
