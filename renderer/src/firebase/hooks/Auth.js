@@ -24,10 +24,11 @@ export const useAuth = () => {
           weight: weight ? weight : "",
         });
         // 가입한 유저의 루틴 db생성
-        const UserRef = doc(db, "Routines", userUid);
+        const UserRef = doc(db, "Routines", user.uid);
         await setDoc(UserRef, {
           routine: [],
         });
+        router.push("/login");
       })
       .catch((error) => {
         const errorCode = error.code;
