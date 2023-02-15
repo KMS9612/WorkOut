@@ -1,4 +1,4 @@
-import CircularProgress from "@mui/material/CircularProgress/CircularProgress";
+import { CircularProgress } from "@mui/material";
 import { useState } from "react";
 import * as CS from "../../styles/ai/ChatRoom.styles";
 
