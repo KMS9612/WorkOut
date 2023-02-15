@@ -3,7 +3,7 @@ import { Paper, Typography } from "@mui/material";
 
 export const Wrapper = styled.div`
   width: 50%;
-  height: 500px;
+  height: 90vh;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;

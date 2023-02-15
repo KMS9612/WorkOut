@@ -1,6 +1,6 @@
 {
   "extends": "../tsconfig.json",
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/firebase/hooks/Auth.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/firebase/hooks/Auth.js", "pages/api/generate.js"],
   "exclude": ["node_modules"],
   "compilerOptions": {
     "jsx": "preserve"
