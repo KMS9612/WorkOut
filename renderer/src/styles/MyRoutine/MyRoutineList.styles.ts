@@ -6,7 +6,6 @@ import { Stack } from "@mui/system";
 
 export const Wrapper = styled(Box)`
   width: 45%;
-  height: 15rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

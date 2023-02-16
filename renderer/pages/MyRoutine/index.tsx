@@ -2,7 +2,12 @@ import { Button } from "@mui/material";
 import CurrentRoutine from "../../src/components/MyRoutine/currentRoutine/currentRoutine";
 import MyRoutineList from "../../src/components/MyRoutine/MyRoutineList/MyRoutineList";
 import YesterDayRoutine from "../../src/components/MyRoutine/yesterDayRoutine/yesterDayRoutine";
-import { Bottom, BtnWrapper, Wrapper, Top } from "../../src/styles/MyRoutine/MyRoutine.styles";
+import {
+  Bottom,
+  BtnWrapper,
+  Wrapper,
+  Top,
+} from "../../src/styles/MyRoutine/MyRoutine.styles";
 export default function MyRoutine() {
   return (
     <Wrapper>

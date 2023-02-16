@@ -7,19 +7,23 @@ import {
   TableCell,
   TableBody,
   Table,
-  Button,
 } from "@mui/material";
+import { useRecoilState } from "recoil";
+import { ClickedRoutine } from "../../../recoilState/Routine/MyRoutine";
+import { useEffect, useState } from "react";
 export default function CurrentRoutine() {
+  const [isClick, setIsClick] = useRecoilState(ClickedRoutine);
+  const [RoutineList, setRoutineList] = useState([]);
+  useEffect(() => {
+    const routine = JSON.parse(sessionStorage.getItem("routine") || "");
+    setRoutineList(routine[isClick]);
+  }, [isClick]);
+
   function createData(name: string, weight: number, Reps: number) {
     return { name, weight, Reps };
   }
 
-  const rows = [
-    createData("데드리프트", 110, 10),
-    createData("데드리프트", 110, 10),
-    createData("데드리프트", 110, 10),
-    createData("데드리프트", 110, 10),
-  ];
+  const rows = [createData("데드리프트", 110, 10)];
   return (
     <CR.Wrapper component={Paper}>
       <CR.Header variant="h4">오늘 진행 할 루틴</CR.Header>
@@ -37,16 +41,16 @@ export default function CurrentRoutine() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
+            {RoutineList.list?.map((row) => (
               <TableRow
                 key={row.name}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
-                  {row.name}
+                  {row.exercise}
                 </TableCell>
                 <TableCell align="center">{row.weight}</TableCell>
-                <TableCell align="center">{row.Reps}</TableCell>
+                <TableCell align="center">{row.reps}</TableCell>
               </TableRow>
             ))}
           </TableBody>
