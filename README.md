@@ -1,4 +1,4 @@
-<p align="center">![image](https://user-images.githubusercontent.com/103579314/219848280-cee192a1-047f-4f26-8106-b1f245ab3b9e.png)</p>
+<p align="center"><img src="https://user-images.githubusercontent.com/103579314/219848280-cee192a1-047f-4f26-8106-b1f245ab3b9e.png"></img></p>
 
 ## 실행 방법
 
