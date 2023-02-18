@@ -1,4 +1,13 @@
-<p align="center"><img src="https://i.imgur.com/flcMvDC.png"></p>
+<p align="center">![image](https://user-images.githubusercontent.com/103579314/219848280-cee192a1-047f-4f26-8106-b1f245ab3b9e.png)</p>
+
+## 실행 방법
+
+아직은 미완성이며 배포,패키징도 진행하지않았습니다.
+때문에 테스트 서버를 이용해 주시면 감사하겠습니다.
+1. git Clone (URL)
+2. Directory로 이동 후 yarn install
+3. yarn dev 로 테스트 서버 구동
+---
 
 ## Work Out! 프로젝트!
 
