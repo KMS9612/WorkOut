@@ -10,8 +10,8 @@ export default function useRoutine() {
   }, []);
 
   const createRoutine = async (title) => {
-    const UserRef = doc(db, "Routines", userUid);
-    await updateDoc(UserRef, {
+    const RoutineRef = doc(db, "Routines", userUid);
+    await updateDoc(RoutineRef, {
       routine: arrayUnion({ title: title, list: [{ exercise: "", weight: "", reps: "" }] }),
     });
     const unsub = onSnapshot(doc(db, "Routines", userUid), (doc) => {
@@ -26,8 +26,8 @@ export default function useRoutine() {
     let newExercise = { exercise: exercise, weight: weight, reps: reps };
     routines[clickedRoutine].list.push(newExercise);
     // 3. 추가된 정보를 firestore에 업데이트
-    const UserRoutines = doc(db, "Routines", userUid);
-    await setDoc(UserRoutines, {
+    const RoutineInfoRef = doc(db, "Routines", userUid);
+    await setDoc(RoutineInfoRef, {
       routine: routines,
     });
 
@@ -36,5 +36,12 @@ export default function useRoutine() {
       sessionStorage.setItem("routine", JSON.stringify(doc.data().routine));
     });
   };
-  return { createRoutine, updateNewExercise };
+
+  const UpdatePrevRoutine = async (PrevRoutine) => {
+    const UserRef = doc(db, "Users", userUid);
+    await updateDoc(UserRef, {
+      prevRoutine: PrevRoutine,
+    });
+  };
+  return { createRoutine, updateNewExercise, UpdatePrevRoutine };
 }

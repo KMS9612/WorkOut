@@ -13,7 +13,7 @@ export default function MyRoutineList() {
   }, []);
   const onClickMyRoutineList = (e: MouseEvent<HTMLDivElement>) => {
     setIsClick(e.currentTarget.tabIndex);
-    console.log(e.currentTarget.tabIndex);
+    sessionStorage.setItem("TodayRoutine", JSON.stringify(RoutineList[e.currentTarget.tabIndex]));
   };
   return (
     <MR.Wrapper component={Paper}>
@@ -22,11 +22,7 @@ export default function MyRoutineList() {
       </MR.Top>
       <MR.ListWrapper spacing={1}>
         {RoutineList.map((item, index) => (
-          <MR.ListItem
-            elevation={2}
-            tabIndex={index}
-            onClick={onClickMyRoutineList}
-          >
+          <MR.ListItem key={item.title} elevation={2} tabIndex={index} onClick={onClickMyRoutineList}>
             {item.title}
           </MR.ListItem>
         ))}
