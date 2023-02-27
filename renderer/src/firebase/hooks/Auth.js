@@ -47,6 +47,10 @@ export const useAuth = () => {
         const docRef = doc(db, "Routines", user.uid);
         const docSnap = await getDoc(docRef);
         sessionStorage.setItem("routine", JSON.stringify(docSnap.data().routine));
+        // prevRoutine 가져오기
+        const PrevRoutineRef = doc(db, "Users", user.uid);
+        const PrevRoutineSnap = await getDoc(PrevRoutineRef);
+        sessionStorage.setItem("prevRoutine", JSON.stringify(PrevRoutineSnap.data().prevRoutine || ""));
 
         setErr(false);
         router.push("/backGround");
