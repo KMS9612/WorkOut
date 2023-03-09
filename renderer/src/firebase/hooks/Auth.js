@@ -1,4 +1,8 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
 import { useRouter } from "next/router";
 import { auth, db } from "../firebase.config";
 import { useRecoilState } from "recoil";
@@ -26,7 +30,12 @@ export const useAuth = () => {
         // 가입한 유저의 루틴 db생성
         const UserRef = doc(db, "Routines", user.uid);
         await setDoc(UserRef, {
-          routine: [{ title: "", list: [{ exercise: "", weight: "", reps: "" }] }],
+          routine: [
+            {
+              title: "새로운 루틴을 생성 해 주세요!",
+              list: [{ exercise: "", weight: "", reps: "" }],
+            },
+          ],
         });
         router.push("/login");
       })
@@ -46,11 +55,17 @@ export const useAuth = () => {
         // Routine정보 가져오기
         const docRef = doc(db, "Routines", user.uid);
         const docSnap = await getDoc(docRef);
-        sessionStorage.setItem("routine", JSON.stringify(docSnap.data().routine));
+        sessionStorage.setItem(
+          "routine",
+          JSON.stringify(docSnap.data().routine)
+        );
         // prevRoutine 가져오기
         const PrevRoutineRef = doc(db, "Users", user.uid);
         const PrevRoutineSnap = await getDoc(PrevRoutineRef);
-        sessionStorage.setItem("prevRoutine", JSON.stringify(PrevRoutineSnap.data().prevRoutine || ""));
+        sessionStorage.setItem(
+          "prevRoutine",
+          JSON.stringify(PrevRoutineSnap.data().prevRoutine || "")
+        );
 
         setErr(false);
         router.push("/backGround");

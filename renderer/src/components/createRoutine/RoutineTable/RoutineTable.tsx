@@ -17,18 +17,15 @@ import useRoutine from "../../../firebase/hooks/Routine";
 export default function RoutineTable() {
   const [clickedRoutine, setClickedRoutine] = useRecoilState(ClickedRoutine);
   const [isSsr, setIsSsr] = useState(false);
-  const [tableItem, setTableItem] = useState<any>();
+  const [tableItem, setTableItem] = useState<any>([]);
 
   const { updateNewExercise } = useRoutine();
   const { register, handleSubmit } = useForm();
 
   useEffect(() => {
-    const routine = JSON.parse(sessionStorage.getItem("routine") || "");
-    if (routine[clickedRoutine]) {
-      setTableItem(routine);
-    }
+    setTableItem(JSON.parse(sessionStorage.getItem("routine") || ""));
     setIsSsr(true);
-  }, [clickedRoutine]);
+  }, []);
 
   // 클릭된 루틴에 새로운 운동을 추가
   const onSubmitNewExercise = handleSubmit(async (data) => {
@@ -46,9 +43,7 @@ export default function RoutineTable() {
   return isSsr ? (
     <TS.Wrapper component={Paper}>
       <TS.FormWrapper onSubmit={onSubmitNewExercise}>
-        <TS.Header variant="h4">
-          {tableItem[clickedRoutine].title}의 운동정보
-        </TS.Header>
+        <TS.Header variant="h4">{tableItem[clickedRoutine]?.title}</TS.Header>
 
         <TS.InputWrapper onSubmit={onSubmitNewExercise}>
           <TS.Input label="종목" {...register("exercise")} />

@@ -9,19 +9,24 @@ import { ClickedRoutine } from "../../../recoilState/Routine/createRoutine";
 export default function RoutineList() {
   const [clickedRoutine, setClickedRoutine] = useRecoilState(ClickedRoutine);
   const [routines, setRoutines] = useState([]);
+  const [isChange, setIsChange] = useState(false);
   const { createRoutine } = useRoutine();
   const { register, handleSubmit } = useForm();
   // 첫 접속시 루틴리스트를 표시하기 위한 useEffect
   useEffect(() => {
     setRoutines(JSON.parse(sessionStorage.getItem("routine") || ""));
-  }, []);
+  }, [isChange]);
+
   // 루틴을 1개 추가하기 위한 함수
   const onSubmitCreateRoutine = handleSubmit(async (data) => {
     await createRoutine(data.title);
-    const Routine = JSON.parse(sessionStorage.getItem("routine") || "");
+    let Routine;
+    Routine = JSON.parse(sessionStorage.getItem("routine") || "");
     setRoutines(Routine);
+    setIsChange((prev) => !prev);
   });
 
+  /** 루틴 리스트를 선택하면 해당하는 index가 GlobalState에 저장되는 함수 */
   const onClickRoutineTitle = (event: MouseEvent<HTMLDivElement>) => {
     console.log(event.currentTarget.tabIndex);
     setClickedRoutine(event.currentTarget.tabIndex);
@@ -38,7 +43,12 @@ export default function RoutineList() {
         </LS.InputWrapper>
         <LS.ListWrapper spacing={1}>
           {routines.map((item: any, index: number) => (
-            <LS.ListItem key={item.title} elevation={2} tabIndex={index} onClick={onClickRoutineTitle}>
+            <LS.ListItem
+              key={item.title}
+              elevation={2}
+              tabIndex={index}
+              onClick={onClickRoutineTitle}
+            >
               {item.title}
             </LS.ListItem>
           ))}
