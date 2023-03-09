@@ -33,17 +33,19 @@ export const Header = styled(Typography)`
 `;
 export const InputWrapper = styled.div`
   width: 95%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: flex-end;
+  align-content: flex-end;
   @media screen and (max-width: 700px) {
-    flex-direction: column;
   }
 `;
 
 export const Input = styled(TextField)`
-  width: 27%;
+  width: 90%;
+  align-self: center;
+  justify-self: center;
   @media screen and (max-width: 700px) {
     width: 90%;
   }

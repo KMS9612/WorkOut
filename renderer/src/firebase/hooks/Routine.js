@@ -1,4 +1,11 @@
-import { addDoc, arrayUnion, doc, onSnapshot, setDoc, updateDoc } from "firebase/firestore";
+import {
+  addDoc,
+  arrayUnion,
+  doc,
+  onSnapshot,
+  setDoc,
+  updateDoc,
+} from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../firebase.config";
 
@@ -12,16 +19,30 @@ export default function useRoutine() {
   const createRoutine = async (title) => {
     const RoutineRef = doc(db, "Routines", userUid);
     await updateDoc(RoutineRef, {
-      routine: arrayUnion({ title: title, list: [{ exercise: "", weight: "", reps: "" }] }),
+      routine: arrayUnion({
+        title: title,
+        list: [{ exercise: "", weight: "", reps: "", sets: "" }],
+      }),
     });
     const unsub = onSnapshot(doc(db, "Routines", userUid), (doc) => {
       sessionStorage.setItem("routine", JSON.stringify(doc.data().routine));
     });
   };
 
-  const updateNewExercise = async (clickedRoutine, exercise, weight, reps) => {
+  const updateNewExercise = async (
+    clickedRoutine,
+    exercise,
+    weight,
+    reps,
+    sets
+  ) => {
     let routines = JSON.parse(sessionStorage.getItem("routine"));
-    let newExercise = { exercise: exercise, weight: weight, reps: reps };
+    let newExercise = {
+      exercise: exercise,
+      weight: weight,
+      reps: reps,
+      sets: sets,
+    };
     routines[clickedRoutine].list.push(newExercise);
 
     const RoutineInfoRef = doc(db, "Routines", userUid);

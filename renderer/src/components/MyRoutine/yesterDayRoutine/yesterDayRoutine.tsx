@@ -21,23 +21,32 @@ export default function YesterDayRoutine() {
       <YD.Top>
         <YD.Header variant="h4">이전 루틴 정보</YD.Header>
       </YD.Top>
-      <TableContainer component={Paper} elevation={4} style={{ textAlign: "right", maxWidth: "90%" }}>
+      <TableContainer
+        component={Paper}
+        elevation={4}
+        style={{ textAlign: "right", maxWidth: "90%" }}
+      >
         <Table aria-label="simple table" style={{ width: "100%" }}>
           <TableHead>
             <TableRow>
               <TableCell>운동종류</TableCell>
               <TableCell align="center">중량&nbsp;(kg)</TableCell>
               <TableCell align="center">횟수</TableCell>
+              <TableCell align="center">세트</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {PrevRoutine.list?.map((item, index) => (
-              <TableRow key={index} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+              <TableRow
+                key={index}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
                 <TableCell component="th" scope="row">
                   {item.exercise}
                 </TableCell>
                 <TableCell align="center">{item.weight}</TableCell>
                 <TableCell align="center">{item.reps}</TableCell>
+                <TableCell align="center">{item.sets}</TableCell>
               </TableRow>
             ))}
           </TableBody>
