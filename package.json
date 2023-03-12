@@ -25,6 +25,7 @@
     "openai": "^3.1.0",
     "react-hook-form": "^7.43.1",
     "recoil": "^0.7.6",
+    "uuidv4": "^6.2.13",
     "yup": "^0.32.11"
   },
   "devDependencies": {

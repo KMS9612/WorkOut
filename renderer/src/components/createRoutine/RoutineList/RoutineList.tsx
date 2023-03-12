@@ -4,26 +4,25 @@ import useRoutine from "../../../firebase/hooks/Routine";
 import Paper from "@mui/material/Paper";
 import { MouseEvent, useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
-import { ClickedRoutine } from "../../../recoilState/Routine/createRoutine";
+import { ClickedRoutine, Routines } from "../../../recoilState/Routine/createRoutine";
+import { uuid } from "uuidv4";
 
 export default function RoutineList() {
   const [clickedRoutine, setClickedRoutine] = useRecoilState(ClickedRoutine);
-  const [routines, setRoutines] = useState([]);
-  const [isChange, setIsChange] = useState(false);
+  const [routines, setRoutines] = useRecoilState<any>(Routines);
   const { createRoutine } = useRoutine();
   const { register, handleSubmit } = useForm();
   // 첫 접속시 루틴리스트를 표시하기 위한 useEffect
   useEffect(() => {
-    setRoutines(JSON.parse(sessionStorage.getItem("routine") || ""));
-  }, [isChange]);
+    let Routine = JSON.parse(sessionStorage.getItem("routine") || "");
+    let CopyRoutine = [...Routine];
+    setRoutines(CopyRoutine);
+  }, []);
 
   // 루틴을 1개 추가하기 위한 함수
   const onSubmitCreateRoutine = handleSubmit(async (data) => {
     await createRoutine(data.title);
-    let Routine;
-    Routine = JSON.parse(sessionStorage.getItem("routine") || "");
-    setRoutines(Routine);
-    setIsChange((prev) => !prev);
+    setRoutines((prev: any) => [...prev, { title: data.title, list: [{ exercise: "", reps: "", sets: "", weight: "" }] }]);
   });
 
   /** 루틴 리스트를 선택하면 해당하는 index가 GlobalState에 저장되는 함수 */
@@ -43,12 +42,7 @@ export default function RoutineList() {
         </LS.InputWrapper>
         <LS.ListWrapper spacing={1}>
           {routines.map((item: any, index: number) => (
-            <LS.ListItem
-              key={item.title}
-              elevation={2}
-              tabIndex={index}
-              onClick={onClickRoutineTitle}
-            >
+            <LS.ListItem key={uuid()} elevation={2} tabIndex={index} onClick={onClickRoutineTitle}>
               {item.title}
             </LS.ListItem>
           ))}
