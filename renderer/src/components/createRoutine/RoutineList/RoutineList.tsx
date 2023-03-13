@@ -10,7 +10,7 @@ import { uuid } from "uuidv4";
 export default function RoutineList() {
   const [clickedRoutine, setClickedRoutine] = useRecoilState(ClickedRoutine);
   const [routines, setRoutines] = useRecoilState<any>(Routines);
-  const { createRoutine } = useRoutine();
+  const { createRoutine, DeleteRoutine } = useRoutine();
   const { register, handleSubmit } = useForm();
   // 첫 접속시 루틴리스트를 표시하기 위한 useEffect
   useEffect(() => {
@@ -27,8 +27,17 @@ export default function RoutineList() {
 
   /** 루틴 리스트를 선택하면 해당하는 index가 GlobalState에 저장되는 함수 */
   const onClickRoutineTitle = (event: MouseEvent<HTMLDivElement>) => {
-    console.log(event.currentTarget.tabIndex);
     setClickedRoutine(event.currentTarget.tabIndex);
+  };
+
+  const onClickDeleteRoutine = async () => {
+    await DeleteRoutine();
+    let routines = JSON.parse(sessionStorage.getItem("routine") || "");
+    const IndexCount = clickedRoutine;
+    routines.splice(IndexCount, 1);
+    const NewRoutineList = routines;
+    setRoutines([...NewRoutineList]);
+    setClickedRoutine(0);
   };
   return (
     <LS.Wrapper component={Paper}>
@@ -41,11 +50,18 @@ export default function RoutineList() {
           <LS.SubmitBtn type="submit">추가</LS.SubmitBtn>
         </LS.InputWrapper>
         <LS.ListWrapper spacing={1}>
-          {routines.map((item: any, index: number) => (
-            <LS.ListItem key={uuid()} elevation={2} tabIndex={index} onClick={onClickRoutineTitle}>
-              {item.title}
-            </LS.ListItem>
-          ))}
+          {routines.length !== 0 ? (
+            routines.map((item: any, index: number) => (
+              <LS.ListBox key={uuid()}>
+                <LS.ListItem elevation={2} tabIndex={index} onClick={onClickRoutineTitle}>
+                  {item.title}
+                </LS.ListItem>
+                {clickedRoutine === index ? <LS.Delete tabIndex={index} onClick={onClickDeleteRoutine}></LS.Delete> : <LS.HideIcon></LS.HideIcon>}
+              </LS.ListBox>
+            ))
+          ) : (
+            <LS.Header>새로운 루틴을 생성 해 주세요</LS.Header>
+          )}
         </LS.ListWrapper>
       </LS.FormBox>
     </LS.Wrapper>

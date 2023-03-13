@@ -3,6 +3,8 @@ import styled from "@emotion/styled";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import { Stack } from "@mui/system";
+import DeleteIcon from "@mui/icons-material/Delete";
+
 export const FormBox = styled.form`
   width: 100%;
   display: flex;
@@ -41,6 +43,25 @@ export const ListWrapper = styled(Stack)`
   align-items: center;
 `;
 
+export const ListBox = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+export const Delete = styled(DeleteIcon)`
+  width: 40px;
+  cursor: pointer;
+  color: #ff8375;
+  &:hover {
+    transition: 300ms;
+    font-size: 32px;
+  }
+`;
+export const HideIcon = styled.div`
+  display: hidden;
+`;
 export const ListItem = styled(Paper)`
   width: 95%;
   height: 60px;
@@ -49,10 +70,6 @@ export const ListItem = styled(Paper)`
   align-items: center;
   font-size: 24px;
   cursor: pointer;
-  &:hover {
-    transform: scale(1.1, 1.1);
-    transition: 1000ms;
-  }
 `;
 
 export const InputWrapper = styled.div`
