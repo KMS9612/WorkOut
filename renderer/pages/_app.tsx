@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Head from "next/head";
 import type { AppProps } from "next/app";
-import { Box, Button, ButtonBase, CssBaseline, ThemeProvider } from "@mui/material";
+import { Box, Button, CssBaseline, ThemeProvider } from "@mui/material";
 import theme from "../lib/theme";
 import type { EmotionCache } from "@emotion/cache";
 import createEmotionCache from "../lib/create-emotion-cache";
@@ -10,7 +10,8 @@ import styled from "@emotion/styled";
 import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 import { useRouter } from "next/router";
 import { RecoilRoot } from "recoil";
-import { app } from "electron";
+import { auth } from "../src/firebase/firebase.config";
+import { browserLocalPersistence, getAuth, onAuthStateChanged, setPersistence } from "firebase/auth";
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -25,13 +26,23 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 
-const BtnWrapper = styled(Box)`
-  width: 100px;
-  height: 100px;
-`;
 export default function MyApp(props: MyAppProps) {
   const { Component, pageProps, emotionCache = clientSideEmotionCache } = props;
 
+  useEffect(() => {
+    setPersistence(auth, browserLocalPersistence).then(() => {
+      // 로그인 여부 확인
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          // 이미 인증된 경우, 다시 인증하지 않도록 함
+          return;
+        } else {
+          // 로그인이 필요한 경우 로그인 페이지로 이동
+          router.push("/login");
+        }
+      });
+    });
+  }, []);
   const router = useRouter();
 
   return (

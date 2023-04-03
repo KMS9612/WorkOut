@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { browserSessionPersistence, createUserWithEmailAndPassword, onAuthStateChanged, setPersistence, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useRouter } from "next/router";
 import { auth, db } from "../firebase.config";
 import { useRecoilState } from "recoil";
@@ -66,5 +66,6 @@ export const useAuth = () => {
         setErr(true);
       });
   };
+
   return { createUser, Login };
 };
