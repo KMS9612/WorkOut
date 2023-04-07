@@ -30,18 +30,7 @@ export default function MyApp(props: MyAppProps) {
   const { Component, pageProps, emotionCache = clientSideEmotionCache } = props;
 
   useEffect(() => {
-    setPersistence(auth, browserLocalPersistence).then(() => {
-      // 로그인 여부 확인
-      onAuthStateChanged(auth, (user) => {
-        if (user) {
-          // 이미 인증된 경우, 다시 인증하지 않도록 함
-          return;
-        } else {
-          // 로그인이 필요한 경우 로그인 페이지로 이동
-          router.push("/login");
-        }
-      });
-    });
+    setPersistence(auth, browserLocalPersistence);
   }, []);
   const router = useRouter();
 

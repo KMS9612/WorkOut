@@ -49,6 +49,11 @@ export const ListBox = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  &:focus {
+    transition: 300ms;
+    color: #ff8375;
+    font-size: 32px;
+  }
 `;
 export const Delete = styled(DeleteIcon)`
   width: 40px;

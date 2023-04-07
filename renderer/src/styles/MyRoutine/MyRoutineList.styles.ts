@@ -39,7 +39,16 @@ export const ListWrapper = styled(Stack)`
 `;
 
 export const ListItem = styled(Paper)`
-  width: 90%;
+  width: 95%;
   height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
   cursor: pointer;
+  &:focus {
+    transition: 300ms;
+    color: #ff8375;
+    font-size: 32px;
+  }
 `;
