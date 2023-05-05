@@ -22,6 +22,7 @@ export default function BackGround() {
   const onClickMoveToPage = (event: MouseEvent<HTMLDivElement>) => {
     router.push(event.currentTarget.id);
   };
+
   useEffect(() => {
     setUserInfo(JSON.parse(sessionStorage.getItem("UserInfo") || ""));
   }, []);
