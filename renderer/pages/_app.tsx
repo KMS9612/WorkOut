@@ -42,9 +42,9 @@ export default function MyApp(props: MyAppProps) {
       </Head>
       <ThemeProvider theme={theme}>
         <Button
-          variant="outlined"
+          variant="contained"
           size="small"
-          style={{ position: "fixed" }}
+          style={{ position: "fixed", color: "#fff" }}
           onClick={() => {
             router.back();
           }}

@@ -8,7 +8,6 @@ import { useRouter } from "next/router";
 import { IUserInfo } from "../../src/types/common/UserInfo";
 
 const icons = [
-  { routing: "ai", title: "AI와 대화", Icon: ForumIcon },
   { routing: "MyRoutine", title: "나의 운동루틴", Icon: FitnessCenterIcon },
   {
     routing: "createRoutine",
@@ -29,9 +28,7 @@ export default function BackGround() {
 
   return (
     <BS.Wrapper>
-      <BS.Header variant="h4">{`${
-        UserInfo ? UserInfo.displayName : ""
-      }님 오늘도 WorkOut!`}</BS.Header>
+      <BS.Header variant="h4">오늘도 WorkOut!</BS.Header>
       <BS.IconWrapper>
         {icons.map(({ routing, title, Icon }) => (
           <Tooltip title={title} key={routing}>
