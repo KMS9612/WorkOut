@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { MouseEvent, useEffect } from "react";
+import { MouseEvent } from "react";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../../src/firebase/hooks/Auth";
 import { useRecoilState } from "recoil";
@@ -27,9 +27,7 @@ export default function LoginPage() {
       <LS.InputWrapper component="div">
         <LS.Input type="text" label="이메일" autoFocus {...register("email")} />
         <LS.Input type="password" label="비밀번호" {...register("password")} />
-        {err ? (
-          <LS.Err>로그인 실패! 아이디와 비밀번호를 확인해 주세요</LS.Err>
-        ) : null}
+        {err ? <LS.Err>로그인 실패! 아이디와 비밀번호를 확인해 주세요</LS.Err> : null}
       </LS.InputWrapper>
       <LS.BtnWrapper spacing={1}>
         <LS.LoginBtn type="submit" variant="contained">
