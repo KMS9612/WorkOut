@@ -48,10 +48,12 @@ export const useAuth = () => {
         const user = userCredential.user;
         sessionStorage.setItem("Token", user.refreshToken);
         sessionStorage.setItem("UserInfo", JSON.stringify(user));
+
         // Routine정보 가져오기
         const docRef = doc(db, "Routines", user.uid);
         const docSnap = await getDoc(docRef);
         sessionStorage.setItem("routine", JSON.stringify(docSnap.data().routine));
+
         // prevRoutine 가져오기
         const PrevRoutineRef = doc(db, "Users", user.uid);
         const PrevRoutineSnap = await getDoc(PrevRoutineRef);
