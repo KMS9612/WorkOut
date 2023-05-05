@@ -10,7 +10,6 @@ export const Wrapper = styled.div`
   align-items: center;
   @media screen and (max-width: 700px) {
     width: 100%;
-    overflow: scroll;
   }
 `;
 
@@ -52,5 +51,8 @@ export const IconBox = styled(Paper)`
   @media screen and (max-width: 700px) {
     width: 80%;
     margin-bottom: 5px;
+    &:hover {
+      transform: scale(1.1, 1.1);
+    }
   }
 `;
