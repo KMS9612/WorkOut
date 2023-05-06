@@ -19,6 +19,7 @@ const theme = createTheme({
       defaultProps: {
         variant: "outlined",
         size: "large",
+        sx: { position: "static" },
       },
     },
     MuiTextField: {

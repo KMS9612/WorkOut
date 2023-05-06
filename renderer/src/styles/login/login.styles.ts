@@ -3,13 +3,12 @@ import styled from "@emotion/styled";
 import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 
 export const Wrapper = styled.form`
-  width: 90vw;
-  height: 90vh;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   border-radius: 5px;
   @media screen and (max-width: 550px) {
     width: 90vw;
@@ -34,6 +33,7 @@ export const InputWrapper = styled(Box)`
 `;
 export const Input = styled(TextField)`
   width: 300px;
+
   @media screen and (max-width: 320px) {
     width: 95%;
   }

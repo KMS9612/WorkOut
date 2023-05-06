@@ -6,6 +6,7 @@ import MyRoutineList from "../../src/components/MyRoutine/MyRoutineList/MyRoutin
 import YesterDayRoutine from "../../src/components/MyRoutine/yesterDayRoutine/yesterDayRoutine";
 import useRoutine from "../../src/firebase/hooks/Routine";
 import { Bottom, BtnWrapper, Wrapper, Top } from "../../src/styles/MyRoutine/MyRoutine.styles";
+
 export default function MyRoutine() {
   const { UpdatePrevRoutine } = useRoutine();
   const [open, setOpen] = useState(false);

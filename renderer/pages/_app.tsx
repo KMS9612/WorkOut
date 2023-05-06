@@ -21,10 +21,14 @@ type MyAppProps = AppProps & {
 
 const Wrapper = styled.div`
   width: 100vw;
+  height: 100vh;
+  margin: 0px auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid;
+  @media screen and (max-width: 550px) {
+    width: 96vw;
+  }
 `;
 
 export default function MyApp(props: MyAppProps) {
