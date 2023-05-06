@@ -2,8 +2,8 @@ import styled from "@emotion/styled";
 import { Button, Typography } from "@mui/material";
 
 export const Wrapper = styled.div`
-  width: 90vw;
-  height: 90vh;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;

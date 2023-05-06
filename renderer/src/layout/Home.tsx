@@ -2,10 +2,15 @@ import styled from "@emotion/styled";
 import Nav from "./Nav";
 
 const LayOutWrapper = styled.div`
-  margin: 0px;
-  padding: 0px;
+  width: 100%;
+  height: 100%;
 `;
-const Body = styled.div``;
+const Body = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+`;
 
 export default function Layout(props: any) {
   return (
