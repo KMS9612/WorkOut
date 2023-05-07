@@ -1,5 +1,4 @@
 import * as BS from "../../src/styles/backGround/backGround.styles";
-import ForumIcon from "@mui/icons-material/Forum";
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import { MouseEvent, useEffect, useState } from "react";

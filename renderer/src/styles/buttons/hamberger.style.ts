@@ -1,6 +1,5 @@
 import { BarMid, BarTopBot } from "../../types/buttons/hamberger.type";
 import styled from "@emotion/styled";
-
 // styles
 export const Button = styled.button<BarTopBot>`
   position: relative;
@@ -9,6 +8,7 @@ export const Button = styled.button<BarTopBot>`
   justify-content: ${({ checked }) => (checked ? "center" : "space-around")};
   width: 1.5rem;
   height: 1.5rem;
+  margin: 5px 0px 0px 5px;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -19,7 +19,7 @@ export const Button = styled.button<BarTopBot>`
 export const Bar = styled.span`
   height: 0.25rem;
   width: 100%;
-  background: #000;
+  background: #ff8375;
   border-radius: 10px;
 `;
 

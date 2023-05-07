@@ -3,8 +3,8 @@ import styled from "@emotion/styled";
 import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 
 export const Wrapper = styled.form`
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 90vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
