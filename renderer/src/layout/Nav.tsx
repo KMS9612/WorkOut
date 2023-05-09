@@ -11,6 +11,7 @@ const Wrapper = styled.div`
   justify-content: flex-start;
   width: 20%;
   height: 100%;
+  z-index: 9999;
 `;
 
 export default function Nav() {

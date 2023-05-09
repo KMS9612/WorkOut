@@ -26,9 +26,6 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  @media screen and (max-width: 550px) {
-    width: 96vw;
-  }
 `;
 
 export default function MyApp(props: MyAppProps) {
