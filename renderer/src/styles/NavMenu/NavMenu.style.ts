@@ -12,7 +12,6 @@ export const Wrapper = styled.div<IWrapper>`
   left: ${({ isOpen }) => (isOpen ? "-1px" : "-500px")};
   transition: left 0.5s ease-in-out;
   background-color: #2b2d42;
-  z-index: 10000;
 `;
 
 export const HeadBox = styled.div`
