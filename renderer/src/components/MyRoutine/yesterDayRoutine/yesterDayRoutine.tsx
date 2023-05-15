@@ -6,16 +6,13 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { useEffect, useState } from "react";
+import { uuid } from "uuidv4";
 
-export default function YesterDayRoutine() {
-  const [PrevRoutine, setPrevRoutine] = useState([]);
-  useEffect(() => {
-    const PrevRoutine = JSON.parse(sessionStorage.getItem("prevRoutine") || "");
-    setPrevRoutine(PrevRoutine);
-    console.log(PrevRoutine);
-  }, []);
+interface IPropsYesterDayRoutine {
+  PrevRoutine: Array<Object>;
+}
 
+export default function YesterDayRoutine(props: IPropsYesterDayRoutine) {
   return (
     <YD.Wrapper component={Paper}>
       <YD.Top>
@@ -36,9 +33,9 @@ export default function YesterDayRoutine() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {PrevRoutine.list?.map((item, index) => (
+            {props.PrevRoutine.list?.map((item) => (
               <TableRow
-                key={index}
+                key={uuid()}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell component="th" scope="row">

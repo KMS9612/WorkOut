@@ -1,4 +1,10 @@
-import { arrayUnion, doc, onSnapshot, setDoc, updateDoc } from "firebase/firestore";
+import {
+  arrayUnion,
+  doc,
+  onSnapshot,
+  setDoc,
+  updateDoc,
+} from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { ClickedRoutine } from "../../recoilState/Routine/createRoutine";
@@ -7,6 +13,7 @@ import { db } from "../firebase.config";
 export default function useRoutine() {
   const [userUid, setUserUid] = useState();
   const [clickedRoutine, setClickedRoutine] = useRecoilState(ClickedRoutine);
+
   useEffect(() => {
     setUserUid(JSON.parse(sessionStorage.getItem("UserInfo")).uid);
   }, []);
@@ -26,7 +33,13 @@ export default function useRoutine() {
   };
 
   /** 루틴 내용(운동이름, 갯수 등)을 업데이트 하는 함수 */
-  const updateNewExercise = async (clickedRoutine, exercise, weight, reps, sets) => {
+  const updateNewExercise = async (
+    clickedRoutine,
+    exercise,
+    weight,
+    reps,
+    sets
+  ) => {
     let routines = JSON.parse(sessionStorage.getItem("routine"));
     let newExercise = {
       exercise: exercise,
@@ -53,6 +66,7 @@ export default function useRoutine() {
     await updateDoc(UserRef, {
       prevRoutine: PrevRoutine,
     });
+    sessionStorage.setItem("prevRoutine", JSON.stringify(PrevRoutine));
   };
 
   const DeleteRoutine = async () => {
