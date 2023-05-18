@@ -3,7 +3,7 @@ import { Box } from "@mui/system";
 import { Typography } from "@mui/material";
 
 export const Wrapper = styled(Box)`
-  width: 95%;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;

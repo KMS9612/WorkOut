@@ -6,6 +6,7 @@ import { MouseEvent, useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { ClickedRoutine, Routines } from "../../../recoilState/Routine/createRoutine";
 import { uuid } from "uuidv4";
+import NoRoutine from "../../../common/NoRoutine";
 
 export default function RoutineList() {
   const [clickedRoutine, setClickedRoutine] = useRecoilState(ClickedRoutine);
@@ -60,7 +61,7 @@ export default function RoutineList() {
               </LS.ListBox>
             ))
           ) : (
-            <LS.Header>새로운 루틴을 생성 해 주세요</LS.Header>
+            <NoRoutine Text="새로운 루틴을 생성 해 주세요" />
           )}
         </LS.ListWrapper>
       </LS.FormBox>
