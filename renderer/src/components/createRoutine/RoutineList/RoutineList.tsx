@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import * as LS from "../../../styles/createRoutine/RoutineList.styles";
 import useRoutine from "../../../firebase/hooks/Routine";
 import Paper from "@mui/material/Paper";
-import { MouseEvent, useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { ClickedRoutine, Routines } from "../../../recoilState/Routine/createRoutine";
 import { uuid } from "uuidv4";
@@ -13,31 +13,30 @@ export default function RoutineList() {
   const [routines, setRoutines] = useRecoilState<any>(Routines);
   const { createRoutine, DeleteRoutine } = useRoutine();
   const { register, handleSubmit } = useForm();
+
   // 첫 접속시 루틴리스트를 표시하기 위한 useEffect
   useEffect(() => {
-    let Routine = JSON.parse(sessionStorage.getItem("routine") || "");
-    let CopyRoutine = [...Routine];
-    setRoutines(CopyRoutine);
+    let routineData = JSON.parse(sessionStorage.getItem("routine") || "");
+    setRoutines([...routineData]);
   }, []);
 
   // 루틴을 1개 추가하기 위한 함수
   const onSubmitCreateRoutine = handleSubmit(async (data) => {
     await createRoutine(data.title);
-    setRoutines((prev: any) => [...prev, { title: data.title, list: [{ exercise: "", reps: "", sets: "", weight: "" }] }]);
+    setRoutines((prevRoutine: any) => [...prevRoutine, { title: data.title, list: [{ exercise: "", reps: "", sets: "", weight: "" }] }]);
   });
 
-  /** 루틴 리스트를 선택하면 해당하는 index가 GlobalState에 저장되는 함수 */
-  const onClickRoutineTitle = (event: MouseEvent<HTMLDivElement>) => {
-    setClickedRoutine(event.currentTarget.tabIndex);
+  /** 루틴 리스트를 클릭하면 클릭된 index가 GlobalState에 저장되는 함수 */
+  const onClickRoutineTitle = (index: number) => {
+    setClickedRoutine(index);
   };
 
-  const onClickDeleteRoutine = async () => {
+  /** 클릭된 루틴을 삭제하는 함수 */
+  const onClickDeleteRoutine = async (index: number) => {
     await DeleteRoutine();
-    let routines = JSON.parse(sessionStorage.getItem("routine") || "");
-    const IndexCount = clickedRoutine;
-    routines.splice(IndexCount, 1);
-    const NewRoutineList = routines;
-    setRoutines([...NewRoutineList]);
+    const updatedRoutines = [...routines];
+    updatedRoutines.splice(index, 1);
+    setRoutines(updatedRoutines);
     setClickedRoutine(0);
   };
   return (
@@ -51,13 +50,13 @@ export default function RoutineList() {
           <LS.SubmitBtn type="submit">추가</LS.SubmitBtn>
         </LS.InputWrapper>
         <LS.ListWrapper spacing={1}>
-          {routines.length !== 0 ? (
+          {routines.length > 0 ? (
             routines.map((item: any, index: number) => (
               <LS.ListBox key={uuid()}>
-                <LS.ListItem elevation={2} tabIndex={index} onClick={onClickRoutineTitle}>
+                <LS.ListItem elevation={2} onClick={() => onClickRoutineTitle(index)}>
                   {item.title}
                 </LS.ListItem>
-                {clickedRoutine === index ? <LS.Delete tabIndex={index} onClick={onClickDeleteRoutine}></LS.Delete> : <LS.HideIcon></LS.HideIcon>}
+                {clickedRoutine === index ? <LS.Delete onClick={() => onClickDeleteRoutine(index)}></LS.Delete> : <LS.HideIcon></LS.HideIcon>}
               </LS.ListBox>
             ))
           ) : (
