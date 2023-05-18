@@ -1,13 +1,7 @@
-import {
-  arrayUnion,
-  doc,
-  onSnapshot,
-  setDoc,
-  updateDoc,
-} from "firebase/firestore";
+import { arrayUnion, doc, onSnapshot, setDoc, updateDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { useRecoilState } from "recoil";
-import { ClickedRoutine } from "../../recoilState/Routine/createRoutine";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { ClickedRoutine, Routines } from "../../recoilState/Routine/createRoutine";
 import { db } from "../firebase.config";
 
 export default function useRoutine() {
@@ -24,7 +18,7 @@ export default function useRoutine() {
     await updateDoc(RoutineRef, {
       routine: arrayUnion({
         title: title,
-        list: [{ exercise: "", weight: "", reps: "", sets: "" }],
+        list: [],
       }),
     });
     const unsub = onSnapshot(doc(db, "Routines", userUid), (doc) => {
@@ -33,13 +27,7 @@ export default function useRoutine() {
   };
 
   /** 루틴 내용(운동이름, 갯수 등)을 업데이트 하는 함수 */
-  const updateNewExercise = async (
-    clickedRoutine,
-    exercise,
-    weight,
-    reps,
-    sets
-  ) => {
+  const updateNewExercise = async (clickedRoutine, exercise, weight, reps, sets) => {
     let routines = JSON.parse(sessionStorage.getItem("routine"));
     let newExercise = {
       exercise: exercise,
@@ -61,6 +49,7 @@ export default function useRoutine() {
   };
 
   /** 오늘의 루틴을 완료하면 이전 루틴으로 저장되는 함수 */
+  const setRoutines = useSetRecoilState(Routines);
   const UpdatePrevRoutine = async (PrevRoutine) => {
     const UserRef = doc(db, "Users", userUid);
     await updateDoc(UserRef, {
@@ -83,6 +72,7 @@ export default function useRoutine() {
     const unsub = onSnapshot(doc(db, "Routines", userUid), (doc) => {
       sessionStorage.setItem("routine", JSON.stringify(doc.data().routine));
     });
+    setRoutines(NewRoutineList);
   };
   return { createRoutine, updateNewExercise, UpdatePrevRoutine, DeleteRoutine };
 }

@@ -34,7 +34,7 @@ export default function RoutineTable() {
   });
   return isSsr ? (
     <TS.Wrapper component={Paper}>
-      {routines.length !== 0 ? (
+      {routines.length > 0 ? (
         <TS.FormWrapper onSubmit={onSubmitNewExercise}>
           <TS.Header variant="h4">{routines[clickedRoutine]?.title}</TS.Header>
           <TS.InputWrapper onSubmit={onSubmitNewExercise}>
