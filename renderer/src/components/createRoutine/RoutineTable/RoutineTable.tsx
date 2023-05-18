@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import useRoutine from "../../../firebase/hooks/Routine";
 import { uuid } from "uuidv4";
+import NoRoutine from "../../../common/NoRoutine";
 
 export default function RoutineTable() {
   const [clickedRoutine, setClickedRoutine] = useRecoilState(ClickedRoutine);
@@ -63,7 +64,7 @@ export default function RoutineTable() {
           <TS.SubmitNewExercise type="submit">추가하기</TS.SubmitNewExercise>
         </TS.FormWrapper>
       ) : (
-        <TS.Header>새로운 루틴을 생성 해 주세요</TS.Header>
+        <NoRoutine Text="새로운 루틴을 생성 해 주세요" />
       )}
       {routines.length !== 0 ? (
         <TableContainer component={Paper} elevation={4} style={{ textAlign: "right", maxWidth: "90%" }}>

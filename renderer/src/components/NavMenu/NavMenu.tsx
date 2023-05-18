@@ -6,6 +6,7 @@ import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import { MouseEvent, useEffect, useState } from "react";
 import { uuid } from "uuidv4";
 import { useRouter } from "next/router";
+import { Button } from "@mui/material";
 
 export default function NavMenu() {
   const isOpen = useRecoilValue(IsOpen);
@@ -35,18 +36,27 @@ export default function NavMenu() {
   return (
     <NS.Wrapper isOpen={isOpen}>
       {displayName ? (
-        <NS.HeadBox>"{displayName}"님 환영합니다!</NS.HeadBox>
+        <div>
+          <NS.HeadBox>"{displayName}"님 환영합니다!</NS.HeadBox>
+          {icons.map((el) => (
+            <NS.NavBox key={uuid()} id={el.routing} onClick={onClickRouting}>
+              <el.Icon></el.Icon>
+              {el.title}
+            </NS.NavBox>
+          ))}
+        </div>
       ) : (
         <NS.BtnWrapper>
-          <button>로그인하기</button>
+          <Button
+            sx={{ width: 200 }}
+            onClick={() => {
+              router.push("login");
+            }}
+          >
+            로그인하기
+          </Button>
         </NS.BtnWrapper>
       )}
-      {icons.map((el) => (
-        <NS.NavBox key={uuid()} id={el.routing} onClick={onClickRouting}>
-          <el.Icon></el.Icon>
-          {el.title}
-        </NS.NavBox>
-      ))}
     </NS.Wrapper>
   );
 }
