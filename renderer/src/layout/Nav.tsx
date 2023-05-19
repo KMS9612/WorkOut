@@ -1,18 +1,23 @@
 import styled from "@emotion/styled";
 import HambergerMenu from "../components/buttons/hamberger";
-import { useRouter } from "next/router";
 import { useRecoilState } from "recoil";
 import { IsOpen } from "../recoilState/NavBar/isOpen";
 import NavMenu from "../components/NavMenu/NavMenu";
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<TWrapper>`
   position: fixed;
   display: flex;
   justify-content: flex-start;
-  width: 20%;
-  height: 100%;
+  width: ${(props) => (props.isOpen ? "100%" : "5%")};
+  height: ${(props) => (props.isOpen ? "100%" : "5%")};
   z-index: 9999;
+  backdrop-filter: blur(2px);
+  transition: all 300ms;
 `;
+
+type TWrapper = {
+  isOpen: boolean;
+};
 
 export default function Nav() {
   const [isOpen, setIsOpen] = useRecoilState(IsOpen);
@@ -21,9 +26,13 @@ export default function Nav() {
     setIsOpen(!isOpen);
   };
 
-  const router = useRouter();
+  const onClickCloseNav = () => {
+    if (isOpen) {
+      setIsOpen(false);
+    }
+  };
   return (
-    <Wrapper>
+    <Wrapper isOpen={isOpen} onClick={onClickCloseNav}>
       <HambergerMenu onClickOpenNav={onClickOpenNav} />
       <NavMenu></NavMenu>
     </Wrapper>

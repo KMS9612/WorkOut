@@ -1,4 +1,4 @@
-import { browserSessionPersistence, createUserWithEmailAndPassword, onAuthStateChanged, setPersistence, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { browserSessionPersistence, createUserWithEmailAndPassword, onAuthStateChanged, setPersistence, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
 import { useRouter } from "next/router";
 import { auth, db } from "../firebase.config";
 import { useRecoilState } from "recoil";
@@ -64,5 +64,18 @@ export const useAuth = () => {
       });
   };
 
-  return { createUser, Login };
+  const Logout = () => {
+    signOut(auth)
+      .then(() => {
+        // 로그아웃 성공 시 처리할 내용
+        router.push("login");
+        sessionStorage.clear();
+      })
+      .catch((error) => {
+        // 로그아웃 실패 시 처리할 내용
+        console.error("로그아웃 중 오류가 발생했습니다:", error);
+      });
+  };
+
+  return { createUser, Login, Logout };
 };
