@@ -16,7 +16,7 @@ export default function MyRoutine() {
   const isDisabled = useRecoilValue(IsDisabled);
 
   useEffect(() => {
-    let prevRoutineData = JSON.parse(sessionStorage.getItem("prevRoutine") || "");
+    const prevRoutineData = JSON.parse(sessionStorage.getItem("prevRoutine") || "");
     if (prevRoutineData !== "") {
       setPrevRoutine(prevRoutineData);
     }

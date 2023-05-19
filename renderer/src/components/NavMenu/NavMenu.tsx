@@ -1,27 +1,32 @@
-import { useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import * as NS from "../../styles/NavMenu/NavMenu.style";
 import { IsOpen } from "../../recoilState/NavBar/isOpen";
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
-import { MouseEvent, useEffect, useState } from "react";
+import WidgetsIcon from "@mui/icons-material/Widgets";
+import { useEffect, useState } from "react";
 import { uuid } from "uuidv4";
 import { useRouter } from "next/router";
 import { Button } from "@mui/material";
+import LogoutBtn from "../buttons/Logout";
 
 export default function NavMenu() {
-  const isOpen = useRecoilValue(IsOpen);
+  const [isOpen, setIsOpen] = useRecoilState(IsOpen);
   const [displayName, setDisplayName] = useState("");
   const router = useRouter();
 
   useEffect(() => {
     if (sessionStorage.getItem("UserInfo")) {
-      const UserDPName = JSON.parse(sessionStorage.getItem("UserInfo") || "").displayName;
+      let UserDPName = JSON.parse(sessionStorage.getItem("UserInfo") || "").displayName;
       setDisplayName(UserDPName);
+    } else {
+      setDisplayName("");
     }
-    console.log("working");
+    console.log("Nav", displayName);
   });
 
   const icons = [
+    { routing: "backGround", title: "메뉴바로 이동", Icon: WidgetsIcon },
     { routing: "MyRoutine", title: "나의 운동루틴", Icon: FitnessCenterIcon },
     {
       routing: "createRoutine",
@@ -30,16 +35,20 @@ export default function NavMenu() {
     },
   ];
 
-  const onClickRouting = (e: MouseEvent<HTMLDivElement>) => {
-    router.push(e.currentTarget.id);
+  const onClickRouting = (route: string) => {
+    router.push(route);
+    setIsOpen((prev) => !prev);
   };
   return (
     <NS.Wrapper isOpen={isOpen}>
-      {displayName ? (
+      {displayName !== "" ? (
         <div>
-          <NS.HeadBox>"{displayName}"님 환영합니다!</NS.HeadBox>
+          <NS.HeadBox>
+            "{displayName}"님 환영합니다!
+            <LogoutBtn />
+          </NS.HeadBox>
           {icons.map((el) => (
-            <NS.NavBox key={uuid()} id={el.routing} onClick={onClickRouting}>
+            <NS.NavBox key={uuid()} onClick={() => onClickRouting(el.routing)}>
               <el.Icon></el.Icon>
               {el.title}
             </NS.NavBox>

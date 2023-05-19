@@ -19,7 +19,7 @@ export default function YesterDayRoutine(props: IPropsYesterDayRoutine) {
       <YD.Top>
         <YD.Header variant="h4">이전 루틴 정보</YD.Header>
       </YD.Top>
-      {props.PrevRoutine.length > 0 ? (
+      {props.PrevRoutine.length !== 0 ? (
         <TableContainer component={Paper} elevation={4} style={{ textAlign: "right", maxWidth: "90%" }}>
           <Table aria-label="simple table" style={{ width: "100%" }}>
             <TableHead>
