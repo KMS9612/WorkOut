@@ -10,13 +10,14 @@ import {
 import { useRouter } from "next/router";
 import { auth, db } from "../firebase.config";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { LoginError } from "../../recoilState/Auth/loginState";
+import { IsLogin, LoginError } from "../../recoilState/Auth/loginState";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { IsAPILoading } from "../../recoilState/Common/isAPILoading";
 export const useAuth = () => {
   const router = useRouter();
   const [err, setErr] = useRecoilState(LoginError);
   const setIsAPILoading = useSetRecoilState(IsAPILoading);
+  const setIsLogin = useSetRecoilState(IsLogin);
 
   const createUser = async (email, password, name, height, weight) => {
     setIsAPILoading(true);
@@ -42,6 +43,7 @@ export const useAuth = () => {
         await Login(email, password);
         router.push("/backGround");
         setIsAPILoading(false);
+        setIsLogin(true);
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -77,6 +79,7 @@ export const useAuth = () => {
         setErr(false);
         router.push("/backGround");
         setIsAPILoading(false);
+        setIsLogin(true);
       })
       .catch((error) => {
         const errorCode = error.code;

@@ -1,11 +1,11 @@
 import LoadingCircle from "../../src/common/Loading";
 import { useRouter } from "next/router";
-import { MouseEvent } from "react";
+import { MouseEvent, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../../src/firebase/hooks/Auth";
 import { useRecoilState, useRecoilValue } from "recoil";
 import * as LS from "../../src/styles/login/login.styles";
-import { LoginError } from "../../src/recoilState/Auth/loginState";
+import { IsLogin, LoginError } from "../../src/recoilState/Auth/loginState";
 import { IsAPILoading } from "../../src/recoilState/Common/isAPILoading";
 
 export default function LoginPage() {
@@ -13,6 +13,13 @@ export default function LoginPage() {
   const [err, setErr] = useRecoilState(LoginError);
   const isLoading = useRecoilValue(IsAPILoading);
   const { register, handleSubmit } = useForm();
+  const isLogin = useRecoilValue(IsLogin);
+
+  useEffect(() => {
+    if (isLogin) {
+      router.push("backGround");
+    }
+  }, []);
 
   const onClickRouting = (event: MouseEvent<HTMLButtonElement>) => {
     router.push(event.currentTarget.name);

@@ -1,8 +1,10 @@
 import Head from "next/head";
 import { styled } from "@mui/material";
 import * as HS from "../src/styles/home/home.styles";
-import { MouseEvent } from "react";
+import { MouseEvent, useEffect } from "react";
 import { useRouter } from "next/router";
+import { useRecoilValue } from "recoil";
+import { IsLogin } from "../src/recoilState/Auth/loginState";
 
 const Root = styled("div")(({ theme }) => {
   return {
@@ -12,6 +14,15 @@ const Root = styled("div")(({ theme }) => {
 
 function Home() {
   const router = useRouter();
+
+  const isLogin = useRecoilValue(IsLogin);
+
+  useEffect(() => {
+    if (isLogin) {
+      router.push("backGround");
+    }
+  }, []);
+
   const onClickRouting = (event: MouseEvent<HTMLButtonElement>) => {
     router.push(event.currentTarget.name);
   };
