@@ -1,0 +1,12 @@
+appId: com.example.nextron
+productName: WorkOut
+copyright: Copyright © 2023 KMS9612
+directories:
+  output: dist
+  buildResources: resources
+files:
+  - from: .
+    filter:
+      - package.json
+      - app
+publish: null
