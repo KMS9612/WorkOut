@@ -1,13 +1,25 @@
-import { browserSessionPersistence, createUserWithEmailAndPassword, onAuthStateChanged, setPersistence, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
+import {
+  browserSessionPersistence,
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  setPersistence,
+  signInWithEmailAndPassword,
+  signOut,
+  updateProfile,
+} from "firebase/auth";
 import { useRouter } from "next/router";
 import { auth, db } from "../firebase.config";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { LoginError } from "../../recoilState/Auth/loginState";
 import { doc, getDoc, setDoc } from "firebase/firestore";
+import { IsAPILoading } from "../../recoilState/Common/isAPILoading";
 export const useAuth = () => {
   const router = useRouter();
+  const [err, setErr] = useRecoilState(LoginError);
+  const setIsAPILoading = useSetRecoilState(IsAPILoading);
 
   const createUser = async (email, password, name, height, weight) => {
+    setIsAPILoading(true);
     await createUserWithEmailAndPassword(auth, email, password)
       .then(async (userCredential) => {
         const user = userCredential.user;
@@ -15,7 +27,6 @@ export const useAuth = () => {
         await updateProfile(auth.currentUser, {
           displayName: name,
         });
-        await Login(email, password);
         // 가입한 유저의 db생성
         await setDoc(doc(db, "Users", user.uid), {
           uid: user.uid,
@@ -28,16 +39,19 @@ export const useAuth = () => {
         await setDoc(UserRef, {
           routine: [],
         });
-        router.push("/login");
+        await Login(email, password);
+        router.push("/backGround");
+        setIsAPILoading(false);
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        setIsAPILoading(false);
       });
   };
 
-  const [err, setErr] = useRecoilState(LoginError);
   const Login = async (email, password) => {
+    setIsAPILoading(true);
     await signInWithEmailAndPassword(auth, email, password)
       .then(async (userCredential) => {
         const user = userCredential.user;
@@ -47,20 +61,28 @@ export const useAuth = () => {
         // Routine정보 가져오기
         const docRef = doc(db, "Routines", user.uid);
         const docSnap = await getDoc(docRef);
-        sessionStorage.setItem("routine", JSON.stringify(docSnap.data().routine));
+        sessionStorage.setItem(
+          "routine",
+          JSON.stringify(docSnap.data().routine)
+        );
 
         // prevRoutine 가져오기
         const PrevRoutineRef = doc(db, "Users", user.uid);
         const PrevRoutineSnap = await getDoc(PrevRoutineRef);
-        sessionStorage.setItem("prevRoutine", JSON.stringify(PrevRoutineSnap.data().prevRoutine || ""));
+        sessionStorage.setItem(
+          "prevRoutine",
+          JSON.stringify(PrevRoutineSnap.data().prevRoutine || "")
+        );
 
         setErr(false);
         router.push("/backGround");
+        setIsAPILoading(false);
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         setErr(true);
+        setIsAPILoading(false);
       });
   };
 
