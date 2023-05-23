@@ -19,23 +19,13 @@ export default function SignInPage() {
   const router = useRouter();
   const isLogin = useRecoilValue(IsLogin);
 
-  useEffect(() => {
-    if (isLogin) {
-      router.push("backGround");
-    }
-  }, []);
-
   const onClickNextOrPrev = () => {
     setIsPage1((prev) => !prev);
   };
 
-  const reg =
-    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{0,15}$/;
+  const reg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{0,15}$/;
   const schema = yup.object({
-    email: yup
-      .string()
-      .email("이메일 형식에 맞춰서 작성해 주세요")
-      .required("이메일을 입력 해 주세요"),
+    email: yup.string().email("이메일 형식에 맞춰서 작성해 주세요").required("이메일을 입력 해 주세요"),
     password: yup
       .string()
       .min(5, "비밀번호는 5자 이상입니다.")
@@ -59,13 +49,7 @@ export default function SignInPage() {
   });
 
   const onSubmitSigninForm = handleSubmit(async (data) => {
-    await createUser(
-      data.email,
-      data.password,
-      data.name,
-      data.height,
-      data.weight
-    );
+    await createUser(data.email, data.password, data.name, data.height, data.weight);
   });
   return (
     <SS.Wrapper>
@@ -73,18 +57,9 @@ export default function SignInPage() {
       <SS.FormWrapper>
         <PageStatus isPage1={isPage1}></PageStatus>
         {isPage1 ? (
-          <SignInPage1
-            onClickNextOrPrev={onClickNextOrPrev}
-            register={register}
-            errors={errors}
-          />
+          <SignInPage1 onClickNextOrPrev={onClickNextOrPrev} register={register} errors={errors} />
         ) : (
-          <SignInPage2
-            onClickNextOrPrev={onClickNextOrPrev}
-            register={register}
-            onSubmitSigninForm={onSubmitSigninForm}
-            errors={errors}
-          />
+          <SignInPage2 onClickNextOrPrev={onClickNextOrPrev} register={register} onSubmitSigninForm={onSubmitSigninForm} errors={errors} />
         )}
       </SS.FormWrapper>
     </SS.Wrapper>

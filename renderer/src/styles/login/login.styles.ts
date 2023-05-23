@@ -11,7 +11,7 @@ export const Wrapper = styled.form`
   align-items: center;
   border-radius: 5px;
   @media screen and (max-width: 550px) {
-    width: 90vw;
+    width: 320px;
     height: 90vh;
     justify-content: center;
     align-items: center;
@@ -22,6 +22,8 @@ export const Header = styled(Typography)`
   font-family: "Jua", "sans-serif";
   color: #ff8375;
   font-weight: 700;
+  @media screen and (max-width: 320px) {
+  }
 `;
 
 export const InputWrapper = styled(Box)`
@@ -39,15 +41,26 @@ export const Input = styled(TextField)`
   }
 `;
 
-export const BtnWrapper = styled(Stack)``;
+export const BtnWrapper = styled(Stack)`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 export const LoginBtn = styled(Button)`
   width: 300px;
   color: #fff;
+  @media screen and (max-width: 320px) {
+    width: 95%;
+  }
 `;
 
 export const SignInBtn = styled(Button)`
   width: 300px;
+  @media screen and (max-width: 320px) {
+    width: 95%;
+  }
 `;
 
 export const Err = styled.div`

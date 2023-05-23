@@ -18,7 +18,7 @@ export const Button = styled.button<BarTopBot>`
 
 export const Bar = styled.span`
   height: 0.25rem;
-  width: 100%;
+  width: 24px;
   background: #ff8375;
   border-radius: 10px;
 `;

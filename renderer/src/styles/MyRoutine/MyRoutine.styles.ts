@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Top = styled.div`
-  width: 100%;
+  width: 90%;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -21,14 +21,14 @@ export const Top = styled.div`
 `;
 
 export const Bottom = styled.div`
-  width: 100%;
+  width: 90%;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
 export const BtnWrapper = styled.div`
-  width: 100%;
+  width: 90%;
   margin-top: 20px;
   display: flex;
   justify-content: center;
