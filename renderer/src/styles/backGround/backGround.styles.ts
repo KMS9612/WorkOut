@@ -16,7 +16,7 @@ export const Wrapper = styled.div`
 export const Header = styled(Typography)`
   font-family: "Jua", "sans-serif";
   color: #ff8375;
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 550px) {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,7 +29,7 @@ export const IconWrapper = styled.div`
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 550px) {
     width: 100%;
     flex-direction: column;
   }
@@ -48,8 +48,8 @@ export const IconBox = styled(Paper)`
     transform: scale(1.2, 1.2);
     transition: 1000ms;
   }
-  @media screen and (max-width: 700px) {
-    width: 80%;
+  @media screen and (max-width: 550px) {
+    width: 90%;
     margin-bottom: 5px;
     &:hover {
       transform: scale(1.1, 1.1);

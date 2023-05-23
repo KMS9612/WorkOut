@@ -20,8 +20,8 @@ type MyAppProps = AppProps & {
 };
 
 const Wrapper = styled.div`
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 90vh;
   margin: 0px auto;
   display: flex;
   justify-content: center;

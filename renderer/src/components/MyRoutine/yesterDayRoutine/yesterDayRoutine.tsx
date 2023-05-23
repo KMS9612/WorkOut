@@ -20,11 +20,7 @@ export default function YesterDayRoutine(props: IPropsYesterDayRoutine) {
         <YD.Header variant="h4">이전 루틴 정보</YD.Header>
       </YD.Top>
       {props.PrevRoutine.length !== 0 ? (
-        <TableContainer
-          component={Paper}
-          elevation={4}
-          style={{ textAlign: "right", maxWidth: "90%" }}
-        >
+        <TableContainer component={Paper} elevation={4} style={{ textAlign: "right", maxWidth: "90%" }}>
           <Table aria-label="simple table" style={{ width: "100%" }}>
             <TableHead>
               <TableRow>
@@ -36,10 +32,7 @@ export default function YesterDayRoutine(props: IPropsYesterDayRoutine) {
             </TableHead>
             <TableBody>
               {props.PrevRoutine.list?.map((item) => (
-                <TableRow
-                  key={uuid()}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
+                <TableRow key={uuid()} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
                   <TableCell component="th" scope="row">
                     {item.exercise}
                   </TableCell>

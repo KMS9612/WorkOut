@@ -9,7 +9,6 @@ const Body = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
 `;
 
 export default function Layout(props: any) {
