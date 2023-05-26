@@ -73,6 +73,7 @@ export default function useRoutine() {
       sessionStorage.setItem("routine", JSON.stringify(doc.data().routine));
     });
     setRoutines(NewRoutineList);
+    setClickedRoutine(0);
   };
   return { createRoutine, updateNewExercise, UpdatePrevRoutine, DeleteRoutine };
 }
