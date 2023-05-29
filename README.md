@@ -1,7 +1,7 @@
 <p align="center"><img src="https://user-images.githubusercontent.com/103579314/219848280-cee192a1-047f-4f26-8106-b1f245ab3b9e.png"></img></p>
 
 ## 실행 방법
-[홈페이지 바로가기](letsworkout.store)
+[홈페이지 바로가기](letsworkout.store)<br>
 Window
 1. letsworkout.store 에 접속
 2. Window다운로드 버튼 클릭
